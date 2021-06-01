@@ -1,0 +1,48 @@
+﻿@model ElectronicsShop.Presentation.ViewModels.ProductVM
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+@using (Html.BeginForm("AddProduct", "Admin", FormMethod.Post, new { @class = "merge-form" }))
+{
+<div class="col-md-12">
+    <div class="col-md-12">
+        <h3>Add New Product</h3>
+    </div>
+
+    <div class="col-md-3">
+        @Html.LabelFor(m => m.Name, new { @class = "control-label" })
+        <div class="controls">
+            @Html.TextBoxFor(m => m.Name, new { @class = "text-control" })
+            @Html.ValidationMessageFor(m => m.Name, "", new { @class = "validation-message" })
+        </div>
+    </div>
+    <div class="col-md-3">
+        @Html.LabelFor(m => m.CategoryId, new { @class = "control-label" })
+        @Html.DropDownListFor(m => m.CategoryId, (SelectList)ViewBag.Categories, "Select Product Category", new { @class = "ddl-control" })
+        @Html.ValidationMessageFor(m => m.CategoryId, "", new { @class = "validation-message" })
+    </div>
+    <div class="col-md-3">
+        @Html.LabelFor(m => m.Price, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.Price, new { @class = "text-control", @type = "number" })
+        @Html.ValidationMessageFor(m => m.Price, "", new { @class = "validation-message" })
+    </div>
+    <div class="col-md-3">
+        @Html.LabelFor(m => m.AvailableQuantity, new { @class = "control-label" })
+        @Html.TextBoxFor(m => m.AvailableQuantity, new { @class = "text-control", @type = "number" })
+        @Html.ValidationMessageFor(m => m.AvailableQuantity, "", new { @class = "validation-message" })
+    </div>
+    <div class="col-md-6">
+        @Html.LabelFor(m => m.Description, new { @class = "control-label" })
+        @Html.TextAreaFor(m => m.Description, new { @class = "textarea-control" })
+        @Html.ValidationMessageFor(m => m.Description, "", new { @class = "validation-message" })
+    </div>
+
+    <div class="col-md-12" style="text-align:right">
+        <input class="btn btn-large btn-success" type="submit" value="Add Product" />
+    </div>
+</div>
+}
+
+

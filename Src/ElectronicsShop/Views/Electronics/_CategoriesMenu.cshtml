@@ -1,0 +1,14 @@
+﻿@model IEnumerable<ElectronicsShop.Presentation.ViewModels.CategoryVM>
+
+<ul id="sideManu" class="nav nav-tabs nav-stacked">
+    <li class="subMenu open">
+        <a> ELECTRONICS</a>
+        <ul>
+            <li><a class="active" href="@Url.Action("Home", "Electronics")"><i class="fa fa-sm fa-laptop-house"></i>  All (@Model.Sum(c => c.Products.Count())) </a></li>
+            @foreach (var item in Model)
+            {
+                <li><a href="@Url.Action("Home", "Electronics", new { @categoryId = item.Id })"><i class="fa fa-sm fa-tv"></i>  @item.Name (@item.Products.Count()) </a></li>
+            }
+        </ul>
+    </li>
+</ul>

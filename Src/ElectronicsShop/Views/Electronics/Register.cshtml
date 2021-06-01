@@ -1,0 +1,83 @@
+﻿@model ElectronicsShop.Presentation.ViewModels.UserVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<h3> Registration</h3>
+
+@using (Html.BeginForm("Register", "Electronics", FormMethod.Post, new { @class = "merge-form" }))
+{
+    <div class="well">
+        <form class="form-horizontal">
+            <h4>Your personal information</h4>
+            <div class="control-group">
+                @Html.LabelFor(m => m.UserName, new { @class = "control-label" })
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.UserName)
+                    @Html.ValidationMessageFor(m => m.UserName, "", new { @class = "validation-message" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.FullName, new { @class = "control-label" })
+
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.FullName)
+                    @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "validation-message" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Email, new { @class = "control-label" })
+
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.Email)
+                    @Html.ValidationMessageFor(m => m.Email, "", new { @class = "validation-message" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.PhoneNumber, new { @class = "control-label" })
+
+                <div class="controls">
+                    @Html.TextBoxFor(m => m.PhoneNumber)
+                    @Html.ValidationMessageFor(m => m.PhoneNumber, "", new { @class = "validation-message" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Password, new { @class = "control-label" })
+
+                <div class="controls">
+                    @Html.PasswordFor(m => m.Password)
+                    @Html.ValidationMessageFor(m => m.Password, "", new { @class = "validation-message" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.ConfirmPassword, new { @class = "control-label" })
+
+                <div class="controls">
+                    @Html.PasswordFor(m => m.ConfirmPassword)
+                    @Html.ValidationMessageFor(m => m.ConfirmPassword, "", new { @class = "validation-message" })
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.BirthDate, new { @class = "control-label" })
+                <div class="controls">
+                    <input class="date-input" name="BirthDate" type="text" placeholder="" />
+                </div>
+            </div>
+            <div class="control-group">
+                @Html.LabelFor(m => m.Address, new { @class = "control-label" })
+
+                <div class="controls">
+                    @Html.TextAreaFor(m => m.Address)
+                    @Html.ValidationMessageFor(m => m.Address, "", new { @class = "validation-message" })
+                </div>
+            </div>
+
+            <div class="control-group">
+                <div class="controls">
+                    <input class="btn btn-large btn-success" type="submit" value="Register" />
+                </div>
+            </div>
+        </form>
+    </div>
+}

@@ -1,0 +1,64 @@
+﻿@using Microsoft.AspNetCore.Http
+@model ElectronicsShop.Presentation.ViewModels.ProductsListVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+@*<form class="form-horizontal span6">
+    <div class="control-group">
+        <label class="control-label alignL">Sort By </label>
+        <select>
+            <option>Product name A - Z</option>
+            <option>Product name Z - A</option>
+            <option>Product Stoke</option>
+        </select>
+    </div>
+</form>*@
+
+<div id="blockView">
+    <ul class="thumbnails">
+        @foreach(var item in Model.Products)
+                {
+        <li class="span3">
+            <div class="thumbnail">
+                <a><img src="~/images/product.png" alt="" width="160" height="160"/></a>
+                <div class="caption">
+                    <h5>@item.Name</h5>
+                    <div style="max-height:75px;overflow:hidden;">
+                        <p class="text-truncate">@item.Description</p>
+                    </div>
+                    <div style="margin:10px">
+                        <span style="font-weight: 700; color: #22a409;text-align:left"><span style="font-size:16px;">@item.Price</span> EGP</span>
+                    </div>
+                    @{
+                        var userName = Context.Session.GetString("UserName");
+                        var userRole = Context.Session.GetString("RoleId");
+
+                        if(!string.IsNullOrEmpty(userName) && userRole == "2")
+                        {
+                            @Html.ActionLink("Order", "Order", new { controller = "Electronics", @productId = item.Id }, new { @class = "btn btn-primary btn-block" })
+                        }
+                    }
+
+                </div>
+            </div>
+        </li>
+                }
+
+    </ul>
+    <hr class="soft" />
+</div>
+
+<div class="pagination">
+    <ul>
+        <li><a href="#">&lsaquo;</a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#" class="active">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#">4</a></li>
+        <li><a href="#">...</a></li>
+        <li><a href="#">&rsaquo;</a></li>
+    </ul>
+</div>
+<br class="clr" />

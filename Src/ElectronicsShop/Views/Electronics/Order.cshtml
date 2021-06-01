@@ -1,0 +1,33 @@
+﻿@using Microsoft.AspNetCore.Http
+@model ElectronicsShop.Presentation.ViewModels.ProductVM
+@{
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@using (Html.BeginForm("Order", "Electronics", FormMethod.Post))
+{
+    <div class="row">
+        <div id="gallery" class="span3">
+            @Html.HiddenFor(m => Model.Id)
+            <a title="@Model.Name">
+                <img src="~/images/product.png" style="width:100%" />
+            </a>
+        </div>
+        <div class="span6">
+            <h3>@Model.Name</h3>
+            <p>@Model.Description</p>
+            <hr class="soft" />
+            <form class="form-horizontal qtyFrm">
+                <div class="control-group">
+                    <span style="font-weight: 700; color: #22a409;text-align:left"><span style="font-size:16px;">@Model.Price</span> EGP</span>
+                    @Html.TextBoxFor(m => Model.Quantity, new { @placeholder = "Qty.", @class = "span1", @style = "margin-left:30px", @type = "number" })
+                    <button type="submit" class="btn btn-large btn-primary pull-right">Buy<i class=" icon-shopping-cart"></i></button>
+                </div>
+            </form>
+
+            <hr class="soft" />
+            <h4>@Model.AvailableQuantity items in stock</h4>
+        </div>
+    </div>
+}
+

@@ -1,0 +1,108 @@
+﻿@using Microsoft.AspNetCore.Http
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="shortcut icon" href="~/images/Icon/favicon.ico">
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="~/images/Icon/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="~/images/Icon/apple-touch-icon-114-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="~/images/Icon/apple-touch-icon-72-precomposed.png">
+    <link rel="apple-touch-icon-precomposed" href="~/images/Icon/apple-touch-icon-57-precomposed.png">
+    <title>Dashboard</title>
+    <!--Core CSS -->
+    <link href="~/css/bootstrap.min.css" rel="stylesheet">
+    <link href="~/css/bootstrap-reset.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/fontawesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/solid.min.css">
+    <link href="~/css/demo_page.css" rel="stylesheet" />
+    <link href="~/css/demo_table.css" rel="stylesheet" />
+    <link href="~/css/DT_bootstrap.css" rel="stylesheet" />
+    <link href="~/css/style.css" rel="stylesheet">
+    <link href="~/css/style-responsive.css" rel="stylesheet" />
+</head>
+<body>
+    <section id="container">
+        <!--header start-->
+        <header class="header fixed-top clearfix">
+            <!--logo start-->
+            <div class="brand">
+
+                <a href="index.html" class="logo">
+                    <img src="~/images/logo.png" alt="">
+                </a>
+                <div class="sidebar-toggle-box">
+                    <div class="fa fa-bars"></div>
+                </div>
+            </div>
+            <!--logo end-->
+
+            <div class="top-nav clearfix">
+                <ul class="nav pull-right top-menu">
+                    <li class="dropdown">
+                        <a data-toggle="dropdown" class="dropdown-toggle" href="#">
+                            <img alt="" src="~/images/avatar1_small.jpg">
+                            @{ var userName = Context.Session.GetString("AdminName");
+                                var role = Context.Session.GetString("RoleId");
+
+                                if (!string.IsNullOrEmpty(userName))
+                                {
+                    <span class="username">@userName</span> } }
+
+                            <b class="caret"></b>
+                        </a>
+                        <ul class="dropdown-menu extended logout">
+                            <li>
+                                @Html.ActionLink("Log Out", "Logout", new { controller = "Admin" })
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </header>
+        <!--header end-->
+        <!--sidebar start-->
+        <aside>
+            <div id="sidebar" class="nav-collapse">
+                <!-- sidebar menu start-->
+                <div class="leftside-navigation">
+                    <ul class="sidebar-menu" id="nav-accordion">
+
+                        <li class="sub-menu">
+                            <a href="@Url.Action("ProductsList", "Admin")">
+                                <i class="fa fa-tv"></i>
+                                <span>Products</span>
+                            </a>
+                        </li>
+                        <li class="sub-menu">
+                            <a href="@Url.Action("OrdersList", "Admin")">
+                                <i class="fa fa-luggage-cart"></i>
+                                <span>Orders</span>
+                            </a>
+                        </li>
+
+                    </ul>
+                </div>
+                <!-- sidebar menu end-->
+            </div>
+        </aside>
+        <!--sidebar end-->
+        <!--main content start-->
+        <section id="main-content">
+            <div class="wrapper">
+                @RenderBody()
+            </div>
+        </section>
+        <!--main content end-->
+    </section>
+
+    <script src="~/js/jquery.js"></script>
+    <script src="~/js/bootstrap.min.js"></script>
+    <script src="~/js/jquery.dataTables.js"></script>
+    <script src="~/js/DT_bootstrap.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/fontawesome.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/js/solid.min.js"></script>
+    <script src="~/js/scripts.js"></script>
+    <script src="~/js/dynamic_table_init.js"></script>
+
+</body>
+</html>

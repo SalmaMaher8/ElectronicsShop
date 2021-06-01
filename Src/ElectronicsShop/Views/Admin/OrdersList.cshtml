@@ -1,0 +1,35 @@
+﻿@model IEnumerable<ElectronicsShop.Presentation.ViewModels.OrderVM>
+@{
+    ViewData["Title"] = "OrdersList";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="col-sm-12">
+    <div class="adv-table">
+        <table class="table table-bordered table-striped table-hover" id="dynamic-table">
+            <thead>
+                <tr>
+                    <th>OrderNo.</th>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Total Amount</th>
+                    <th>Customer Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                <tr>
+                    <td>#@item.Id</td>
+                    <td>@item.OrderDetails.FirstOrDefault().Product.Name</td>
+                    <td>@item.OrderDetails.FirstOrDefault().Quantity</td>
+                    <td>@item.TotalAmount EGP</td>
+                    <td>@item.User.FullName</td>
+                </tr>
+                }
+
+            </tbody>
+        </table>
+    </div>
+</div>
+

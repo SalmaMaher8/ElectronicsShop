@@ -1,0 +1,42 @@
+﻿@model IEnumerable<ElectronicsShop.Presentation.ViewModels.ProductVM>
+@{
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div>
+    <div class="col-sm-12 pull-right">
+        @Html.ActionLink("Add New Product", "AddProduct", new { controller = "Admin"}, new { @class = "btn btn-primary btn-large" })
+    </div>
+
+    <div class="col-sm-12">
+        <div class="adv-table">
+            <table class="table table-bordered table-striped table-hover" id="dynamic-table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Description</th>
+                        <th>Price</th>
+                        <th>Available Quantity</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                    <tr>
+                        <td>@item.Name</td>
+                        <td>@item.Description</td>
+                        <td>@item.Price EGP</td>
+                        <td>@item.AvailableQuantity</td>
+                        <td>
+                            @Html.ActionLink("Apply Discount", "ApplyProductDiscount", new { controller = "Admin", @productId = item.Id }, new { @class = "btn btn-small btn-success" })
+                        </td>
+                    </tr>
+                    }
+
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+

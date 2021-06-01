@@ -1,0 +1,49 @@
+﻿@model ElectronicsShop.Presentation.ViewModels.ProductDiscountVM
+@{
+    ViewData["Title"] = "ApplyProductDiscount";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+@using (Html.BeginForm("ApplyProductDiscount", "Admin", FormMethod.Post, new { @class = "merge-form" }))
+{
+    <div class="col-md-12">
+        <div class="col-md-12">
+            <h3>Apply Discount</h3>
+            <h4>Product : @Model.ProductName</h4>
+            @Html.HiddenFor(m => m.ProductId)
+        </div>
+
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.ConditionQuantity, new { @class = "control-label" })
+            <div class="controls">
+                @Html.TextBoxFor(m => m.ConditionQuantity, new { @class = "text-control", @type = "number" })
+                @Html.ValidationMessageFor(m => m.ConditionQuantity, "", new { @class = "validation-message" })
+            </div>
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.Type, new { @class = "control-label" })
+            @Html.DropDownListFor(m => m.Type, new List<SelectListItem>
+            {
+                new SelectListItem{ Text= @ElectronicsShop.Domain.Common.Enums.DiscountType.Percent.ToString(), Value = "1" },
+                new SelectListItem{ Text=@ElectronicsShop.Domain.Common.Enums.DiscountType.Amount.ToString(), Value = "2" },
+             }, "Select Discount Type", new { @class = "ddl-control" })
+            @Html.ValidationMessageFor(m => m.Type, "", new { @class = "validation-message" })
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.Value, new { @class = "control-label" })
+            @Html.TextBoxFor(m => m.Value, new { @class = "text-control", @type = "number" })
+            @Html.ValidationMessageFor(m => m.Value, "", new { @class = "validation-message" })
+        </div>
+        <div class="col-md-3">
+            @Html.LabelFor(m => m.ValidUntil, new { @class = "control-label" })
+            <input class="date-input" name="BirthDate" type="text" placeholder="" />
+        </div>
+
+        <div class="col-md-12" style="text-align:right">
+            <input class="btn btn-large btn-success" type="submit" value="Add Product" />
+        </div>
+    </div>
+}
+
+
+
